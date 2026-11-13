@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-pixel: "Pixelify Sans", monospace;
+    --font-body: "Chakra Petch", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    background-color: #0b0e17;
+    color: #f4f1ea;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    user-select: none;
+  }
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Crisp retro pixel borders & tactile 3D button bevels */
+.pixel-panel {
+  background-color: #1c2233;
+  border: 3px solid #090c14;
+  box-shadow:
+    inset 0 2px 0 0 #343f5e,
+    inset 0 -3px 0 0 #111521,
+    0 4px 0 0 #07090f;
+}
+
+.pixel-panel-light {
+  background-color: #252d42;
+  border: 3px solid #090c14;
+  box-shadow:
+    inset 0 2px 0 0 #445278,
+    inset 0 -3px 0 0 #171c2b;
+}
+
+.pixel-btn {
+  position: relative;
+  border: 3px solid #090c14;
+  box-shadow:
+    inset 0 3px 0 0 rgba(255, 255, 255, 0.28),
+    inset 0 -4px 0 0 rgba(0, 0, 0, 0.35),
+    0 4px 0 0 #090c14;
+  transition: transform 60ms ease, box-shadow 60ms ease, filter 120ms ease;
+}
+
+.pixel-btn:hover:not(:disabled) {
+  filter: brightness(1.07);
+}
+
+.pixel-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 2px 0 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 0 rgba(0, 0, 0, 0.35),
+    0 1px 0 0 #090c14;
+}
+
+.pixel-btn:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.pixel-bar-track {
+  background-color: #0d101a;
+  border: 2px solid #05070c;
+  box-shadow: inset 0 2px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Pixel animations (compositor-only) */
+@keyframes floatUpFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.95);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -14px) scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -44px) scale(0.95);
+  }
+}
+
+.animate-float-up {
+  animation: floatUpFade 680ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hitShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px) rotate(-2deg); }
+  45% { transform: translateX(6px) rotate(2deg); }
+  70% { transform: translateX(-4px); }
+}
+
+.animate-hit-shake {
+  animation: hitShake 220ms ease-out;
+}
+
+@keyframes attackLungeUp {
+  0% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-28px) scale(1.1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.animate-lunge-up {
+  animation: attackLungeUp 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes attackLungeDown {
+  0% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(26px) scale(1.1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.animate-lunge-down {
+  animation: attackLungeDown 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes idleBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-idle-bob {
+  animation: idleBob 1.3s steps(2, end) infinite;
+}
+
+@keyframes levelUpPop {
+  0% { opacity: 0; transform: scale(0.75) translateY(10px); }
+  20% { opacity: 1; transform: scale(1.08) translateY(0); }
+  80% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.96) translateY(-10px); }
+}
+
+.animate-level-up {
+  animation: levelUpPop 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-idle-bob,
+  .animate-hit-shake,
+  .animate-lunge-up,
+  .animate-lunge-down,
+  .animate-float-up,
+  .animate-level-up {
+    animation: none !important;
+  }
+}
+
+/* Custom thin pixel scrollbar for shop list */
+.pixel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.pixel-scroll::-webkit-scrollbar-track {
+  background: #101420;
+}
+.pixel-scroll::-webkit-scrollbar-thumb {
+  background: #3a4668;
+  border: 1px solid #090c14;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Pixel Knight: Tap RPG",
+  "description": "Prototype game nhập vai pixel màn hình dọc 9:16 với tập luyện tăng cấp, chiến đấu theo lượt và cửa hàng trang bị.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
